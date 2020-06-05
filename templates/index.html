@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Шетни</title>
+
+    <link href="../static/img/Icon.ico" rel="icon">
+
+    <link href="../static/css/styles.css" rel="stylesheet" type="text/css">
+
+    <link href="../static/vendor/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="../static/vendor/fontawesome/css/all.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+
+<!-- Back to top button -->
+<a id="backToTopButton" class="btn btn-lg btn-warning rounded-circle">
+    <i class="fa fa-arrow-up"></i>
+</a>
+
+<!-- Navigation bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a href="/" class="navbar-brand">
+            <img id="logo" src="../static/img/Logo.png" alt="Logo" class="img-fluid mr-2 pb-2"/>
+            <span class="lead">Шетни.mk</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div id="navbarContent" class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto mr-3 mb-3 mb-lg-0">
+                <li class="nav-item mx-1 active">
+                    <a href="/" class="nav-link">Почетна</a>
+                </li>
+                <li class="nav-item mx-1">
+                    <a href="/about" class="nav-link">За нас</a>
+                </li>
+                <li class="nav-item mx-1">
+                    <a href="/contact" class="nav-link">Контакт</a>
+                </li>
+            </ul>
+
+            <div class="dropdown d-md-inline mr-2 my-3 my-lg-0">
+                <button class="btn btn-outline-dark dropdown-toggle" type="button" id="locationsDropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-search-location"></i>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="locationsDropdownMenuButton">
+                    <a href="/places?location=1" class="dropdown-item">Аеродром</a>
+                    <a href="/places?location=2" class="dropdown-item">Бутел</a>
+                    <a href="/places?location=3" class="dropdown-item">Гази Баба</a>
+                    <a href="/places?location=4" class="dropdown-item">Ѓорче Петров</a>
+                    <a href="/places?location=5" class="dropdown-item">Карпош</a>
+                    <a href="/places?location=6" class="dropdown-item">Кисела Вода</a>
+                    <a href="/places?location=7" class="dropdown-item">Сарај</a>
+                    <a href="/places?location=8" class="dropdown-item">Центар</a>
+                    <a href="/places?location=9" class="dropdown-item">Чаир</a>
+                    <a href="/places?location=10" class="dropdown-item">Шуто Оризари</a>
+                </div>
+            </div>
+            {% if current_user.is_authenticated %}
+                <h6 class="d-inline text-success mt-2 ml-3 ml-lg-4 mr-4">
+                    <div class="dropdown d-inline">
+                        <a href="#" class="dropdown-toggle text-success text-decoration-none" type="button"
+                           id="userDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false">
+                            {{ current_user.username }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="userDropdownMenuButton">
+                            <a href="/reservations" class="dropdown-item">Мои резервации</a>
+                        </div>
+                    </div>
+                </h6>
+                <a href="/logout" class="btn btn-danger">
+                    Одјави се
+                </a>
+            {% else %}
+                <a href="/register" id="registerButton" class="btn mr-2">
+                    Регистрирај се
+                </a>
+                <a href="/login" class="btn btn-outline-dark">
+                    Најави се
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+
+<!-- Header -->
+<header id="header" class="mb-5">
+    <div class="container text-center text-white">
+        <div class="row">
+            <div class="col">
+                <form method="get" action="{{ url_for("places") }}">
+                    <div class="mb-2">
+                        <input name="query" type="search" class="searchControl form-control-lg d-md-inline mb-4 mr-2"
+                               placeholder="Барај...">
+                        <div class="form-group d-lg-inline mb-4 mr-2">
+                            <select name="category" class="searchControl form-control-lg">
+                                <option value="0">Сите категории</option>
+                                <option value="1">Барови</option>
+                                <option value="2">Ресторани</option>
+                                <option value="3">Ноќни клубови</option>
+                            </select>
+                        </div>
+                        <div class="form-group d-lg-inline mb-4 mr-2">
+                            <select name="location" class="searchControl form-control-lg">
+                                <option value="0">Сите локации</option>
+                                <option value="1">Аеродром</option>
+                                <option value="2">Бутел</option>
+                                <option value="3">Гази Баба</option>
+                                <option value="4">Ѓорче Петров</option>
+                                <option value="5">Карпош</option>
+                                <option value="6">Кисела Вода</option>
+                                <option value="7">Сарај</option>
+                                <option value="8">Центар</option>
+                                <option value="9">Чаир</option>
+                                <option value="10">Шуто Оризари</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="searchControl btn btn-success btn-lg mr-2">Пребарај</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Popular places -->
+<section class="container mb-5">
+    <h1 id="headingPopular" class="display-4 text-center">
+        <i class="fa fa-fire"></i>
+        Популарни
+    </h1>
+    <hr/>
+    <div class="row">
+        {% for place in popular_places %}
+            <div class="col-12 col-md-6 col-lg-4 my-3">
+                <a href="/place/{{ place.id }}" class="text-dark text-decoration-none">
+                    <div class="card">
+                        <img src="{{ place.path_to_image }}" alt="Photo of the place" class="card-img-top"/>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ place.name }}</h5>
+                            <div class="card-text mb-3">
+                                <i class="fa fa-map-marked"></i>
+                                <small>{{ place.location }}</small>
+                            </div>
+                            <div>
+                                <span>{{ place.rating }}</span>
+                                <i class="fa fa-star text-warning"></i>
+                                <span class="ml-2">({{ place.number_of_reviews }})</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Categories -->
+<section id="categoriesSection">
+    <div class="container py-5">
+        <h1 class="display-4 text-center text-white">
+            <i class="fa fa-list-alt"></i>
+            Категории
+        </h1>
+        <hr class="bg-white"/>
+        <div class="row">
+            <div class="col-12 col-md-4 my-3">
+                <a href="/places?category=1" class="text-dark text-decoration-none">
+                    <div class="card">
+                        <img src="../static/img/Bar.jpg" alt="Bar photo" class="card-img-top"/>
+                        <div class="card-body bg-light">
+                            <p class="card-title text-center lead">Барови</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-12 col-md-4 my-3">
+                <a href="/places?category=2" class="text-dark text-decoration-none">
+                    <div class="card">
+                        <img src="../static/img/Restaurant.jpg" alt="Restaurant photo" class="card-img-top"/>
+                        <div class="card-body bg-light">
+                            <p class="card-title text-center lead">Ресторани</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-12 col-md-4 my-3">
+                <a href="/places?category=3" class="text-dark text-decoration-none">
+                    <div class="card">
+                        <img src="../static/img/NightClub.jpg" alt="Night club photo" class="card-img-top"/>
+                        <div class="card-body bg-light">
+                            <p class="card-title text-center lead">Ноќни клубови</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-5 bg-dark text-white">
+    <div class="container">
+        <div class="row d-flex justify-content-between">
+            <div class="col-12 col-sm-6 col-xl-3 mb-5">
+                <p class="lead">Добивај известувања</p>
+                <hr class="bg-white mb-4"/>
+                <input type="email" class="form-control mb-3" placeholder="Е-пошта"/>
+                <a href="/" class="btn btn-success">Зачлени се</a>
+            </div>
+
+            <div class="col-12 col-sm-6 col-xl-3">
+                <p class="lead">Следете не на</p>
+                <hr class="bg-white mb-4"/>
+                <a href="http://facebook.com" class="btn btn-sm btn-outline-light mr-2 mb-2">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="http://twitter.com" class="btn btn-sm btn-outline-light mr-2 mb-2">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="http://instagram.com" class="btn btn-sm btn-outline-light mr-2 mb-2">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="http://youtube.com" class="btn btn-sm btn-outline-light mr-2 mb-2">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="http://snapchat.com" class="btn btn-sm btn-outline-light mr-2 mb-2">
+                    <i class="fab fa-snapchat"></i>
+                </a>
+            </div>
+        </div>
+
+        <hr class="bg-white mt-5"/>
+
+        <div class="text-center">
+            <small>&copy; 2020 setni.mk Сите права се задржани.</small>
+        </div>
+    </div>
+</footer>
+
+<script src="../static/vendor/jquery/jquery-3.5.1.js" type="text/javascript"></script>
+<script src="../static/vendor/bootstrap/js/bootstrap.js" type="text/javascript"></script>
+
+<script>
+    let btn = $('#backToTopButton');
+
+    $(window).scroll(function () {
+        if ($(window).scrollTop() > 300) {
+            btn.addClass('show');
+        } else {
+            btn.removeClass('show');
+        }
+    });
+
+    btn.on('click', function (e) {
+        e.preventDefault();
+        $('html, body').animate({scrollTop: 0}, '300');
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Шетни</title>
+
+    <link href="../static/img/Icon.ico" rel="icon">
+
+    <link href="../static/css/styles.css" rel="stylesheet" type="text/css">
+
+    <link href="../static/vendor/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="../static/vendor/fontawesome/css/all.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+
+<!-- Back to top button -->
+<a id="backToTopButton" class="btn btn-lg btn-warning rounded-circle">
+    <i class="fa fa-arrow-up"></i>
+</a>
+
+<!-- Navigation bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a href="/" class="navbar-brand">
+            <img id="logo" src="../static/img/Logo.png" alt="Logo" class="img-fluid mr-2 pb-2" />
+            <span class="lead">Шетни.mk</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div id="navbarContent" class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto mr-3">
+                <li class="nav-item mx-1 ">
+                    <a href="/" class="nav-link">Почетна</a>
+                </li>
+                <li class="nav-item mx-1 active">
+                    <a href="/about" class="nav-link">За нас</a>
+                </li>
+                <li class="nav-item mx-1">
+                    <a href="/contact" class="nav-link">Контакт</a>
+                </li>
+            </ul>
+
+            <div class="dropdown d-sm-inline my-2 my-sm-0 ml-sm-3 mr-2">
+                <button class="btn btn-outline-dark dropdown-toggle" type="button" id="locationsDropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-search-location"></i>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="locationsDropdownMenuButton">
+                    <a href="/places?location=1" class="dropdown-item">Аеродром</a>
+                    <a href="/places?location=2" class="dropdown-item">Бутел</a>
+                    <a href="/places?location=3" class="dropdown-item">Гази Баба</a>
+                    <a href="/places?location=4" class="dropdown-item">Ѓорче Петров</a>
+                    <a href="/places?location=5" class="dropdown-item">Карпош</a>
+                    <a href="/places?location=6" class="dropdown-item">Кисела Вода</a>
+                    <a href="/places?location=7" class="dropdown-item">Сарај</a>
+                    <a href="/places?location=8" class="dropdown-item">Центар</a>
+                    <a href="/places?location=9" class="dropdown-item">Чаир</a>
+                    <a href="/places?location=10" class="dropdown-item">Шуто Оризари</a>
+                </div>
+            </div>
+            {% if current_user.is_authenticated %}
+                <h6 class="d-inline text-success mt-2 ml-3 ml-lg-4 mr-4">
+                    <div class="dropdown d-inline">
+                        <a href="#" class="dropdown-toggle text-success text-decoration-none" type="button"
+                           id="userDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false">
+                            {{ current_user.username }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="userDropdownMenuButton">
+                            <a href="/reservations" class="dropdown-item">Мои резервации</a>
+                        </div>
+                    </div>
+                </h6>
+                <a href="/logout" class="btn btn-danger">
+                    Одјави се
+                </a>
+            {% else %}
+                <a href="/register" id="registerButton" class="btn mr-2">
+                    Регистрирај се
+                </a>
+                <a href="/login" class="btn btn-outline-dark">
+                    Најави се
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+
+<section class="container my-5">
+    <div class="row">
+        <div class="col">
+            <h1 id="headingPopular" class="display-4 text-center">
+                За нас
+            </h1>
+            <hr />
+            <div>
+                <h3 class="mt-4">What is Lorem Ipsum?</h3>
+                <p class="lead text-justify">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                    and scrambled it to make a type specimen book. It has survived not only five centuries, but also
+                    the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the
+                    1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with
+                    desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                </p>
+                <h3 class="mt-4">Where does it come from?</h3>
+                <p class="lead text-justify">
+                    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
+                    classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin
+                    professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words,
+                    consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical
+                    literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33
+                    of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.
+                    This book is a treatise on the theory of ethics, very popular during the Renaissance. The first
+                    line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+
+                    The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
+                    Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in
+                    their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+                </p>
+                <h3 class="mt-4">Why do we use it?</h3>
+                <p class="lead text-justify">
+                    It is a long established fact that a reader will be distracted by the readable content of a page
+                    when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+                    distribution of letters, as opposed to using 'Content here, content here', making it look like
+                    readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as
+                    their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their
+                    infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose
+                    (injected humour and the like).
+                </p>
+                <h3 class="mt-4">Where can I get some?</h3>
+                <p class="lead text-justify">
+                    There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                    alteration in some form, by injected humour, or randomised words which don't look even slightly
+                    believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't
+                    anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet
+                    tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.
+                    It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures,
+                    to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free
+                    from repetition, injected humour, or non-characteristic words etc.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-5 bg-dark text-white">
+    <div class="container">
+        <div class="row d-flex justify-content-between">
+            <div class="col-12 col-sm-6 col-xl-3 mb-5">
+                <p class="lead">Добивај известувања</p>
+                <hr class="bg-white mb-4" />
+                <input type="email" class="form-control mb-3" placeholder="Е-пошта" />
+                <a href="/" class="btn btn-success">Зачлени се</a>
+            </div>
+
+            <div class="col-12 col-sm-6 col-xl-3">
+                <p class="lead">Следете не на</p>
+                <hr class="bg-white mb-4" />
+                <a href="http://facebook.com" class="btn btn-sm btn-outline-light mr-2 mb-2">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="http://twitter.com" class="btn btn-sm btn-outline-light mr-2 mb-2">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="http://instagram.com" class="btn btn-sm btn-outline-light mr-2 mb-2">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="http://youtube.com" class="btn btn-sm btn-outline-light mr-2 mb-2">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="http://snapchat.com" class="btn btn-sm btn-outline-light mr-2 mb-2">
+                    <i class="fab fa-snapchat"></i>
+                </a>
+            </div>
+        </div>
+
+        <hr class="bg-white mt-5" />
+
+        <div class="text-center">
+            <small>&copy; 2020 setni.mk Сите права се задржани.</small>
+        </div>
+    </div>
+</footer>
+
+<script src="../static/vendor/jquery/jquery-3.5.1.js" type="text/javascript"></script>
+<script src="../static/vendor/bootstrap/js/bootstrap.js" type="text/javascript"></script>
+
+<script>
+    let btn = $('#backToTopButton');
+
+    $(window).scroll(function() {
+        if ($(window).scrollTop() > 300) {
+            btn.addClass('show');
+        } else {
+            btn.removeClass('show');
+        }
+    });
+
+    btn.on('click', function(e) {
+        e.preventDefault();
+        $('html, body').animate({scrollTop:0}, '300');
+    });
+</script>
+
+</body>
+</html>

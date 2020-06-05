@@ -1,0 +1,65 @@
+
+* {
+    font-family: "Segoe UI", Helvetic, sans-serif;
+}
+
+/* Back to top button */
+#backToTopButton {
+    display: inline-block;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    transition: background-color .3s, opacity .5s, visibility .5s;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+}
+
+#backToTopButton.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Navigation bar */
+#logo {
+    max-width: 85px;
+    max-height: 85px;
+}
+
+#registerButton {
+    background: saddlebrown;
+    color: white;
+}
+
+/* Header */
+#header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('../img/Header.jpg') no-repeat scroll center center;
+    opacity: 95%;
+    height: 65vh;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.searchControl {
+    width: 230px;
+}
+
+/* Popular */
+#headingPopular {
+    color: saddlebrown;
+}
+
+/* Categories */
+#categoriesSection {
+    background: saddlebrown;
+}
+
+/* Place */
+#more {
+    display: none;
+}
